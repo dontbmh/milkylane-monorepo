@@ -29,3 +29,5 @@ amplifytools.xcconfig
 .secret-*
 
 lib/
+*.log
+*.tsbuildinfo
