@@ -1,0 +1,195 @@
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+# }
+
+# type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+#   id: ID!
+#   title: String!
+#   blogID: ID!
+#   blog: Blog @connection(fields: ["blogID"])
+#   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+# }
+
+# type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+#   id: ID!
+#   postID: ID!
+#   post: Post @connection(fields: ["postID"])
+#   content: String!
+# }
+
+type User @model {
+  id: ID!
+  username: String!
+  avatarURI: String!
+}
+
+type Review
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  )
+  @key(name: "by-dish", fields: ["dishId", "stars"])
+  @key(name: "by-restaurant", fields: ["restaurantId", "stars"]) {
+  id: ID!
+  dishId: ID!
+  restaurantId: ID!
+  title: String!
+  stars: Float!
+  content: String!
+  reviewerId: ID!
+  reviewer: User @connection(fields: ["reviewerId"])
+}
+
+type Dish
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  description: String!
+  stars: Float!
+  price: Float!
+  ingredients: [String]
+  imageURI: String!
+  mediumImageURI: String!
+  thumbnailImageURI: String!
+  menus: [DishMenu] @connection(keyName: "by-dish", fields: ["id"])
+  reviews: [Review] @connection(keyName: "by-dish", fields: ["id"])
+}
+
+type Menu
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  )
+  @key(name: "by-restaurant", fields: ["restaurantId", "type"]) {
+  id: ID!
+  restaurantId: ID!
+  type: String!
+  dishes: [DishMenu] @connection(keyName: "by-menu", fields: ["id"])
+}
+
+type DishMenu
+  @model(queries: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  )
+  @key(name: "by-dish", fields: ["dishId", "menuId"])
+  @key(name: "by-menu", fields: ["menuId", "dishId"]) {
+  id: ID!
+  dishId: ID!
+  menuId: ID!
+  dish: Dish @connection(fields: ["dishId"])
+  menu: Menu @connection(fields: ["menuId"])
+}
+
+type Event
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  description: String!
+  dishTypes: [String]
+  imageURI: String!
+  mediumImageURI: String!
+  thumbnailImageURI: String!
+  restaurants: [EventRestaurant]
+    @connection(keyName: "by-event", fields: ["id"])
+}
+
+type Restaurant
+  @model
+  @searchable
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  description: String!
+  stars: Float!
+  address: String!
+  location: [Float]!
+  imageURI: String!
+  mediumImageURI: String!
+  thumbnailImageURI: String!
+  operatingHours: [AWSJSON]!
+  events: [EventRestaurant]
+    @connection(keyName: "by-restaurant", fields: ["id"])
+  menus: [Menu] @connection(keyName: "by-restaurant", fields: ["id"])
+  reviews: [Review] @connection(keyName: "by-restaurant", fields: ["id"])
+}
+
+type EventRestaurant
+  @model(queries: null)
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"] }
+      { allow: public, operations: [read], provider: apiKey }
+    ]
+  )
+  @key(name: "by-event", fields: ["eventId", "restaurantId"])
+  @key(name: "by-restaurant", fields: ["restaurantId", "eventId"]) {
+  id: ID!
+  eventId: ID!
+  restaurantId: ID!
+  event: Dish @connection(fields: ["eventId"])
+  restaurant: Restaurant @connection(fields: ["restaurantId"])
+}
+
+type Query {
+  nearbyRestaurants(
+    location: [Float]!
+    distance: String
+    limit: Int
+    nextToken: String
+  ): RestaurantConnection @aws_api_key
+}
+
+type RestaurantConnection @aws_api_key {
+  items: [Restaurant]
+  nextToken: String
+  total: Int
+}
+
+type OrderItem
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }, { allow: owner }])
+  @key(name: "by-order", fields: ["orderId", "dishId"]) {
+  id: ID!
+  orderId: ID!
+  dishId: ID!
+  dish: Dish @connection(fields: ["dishId"])
+  quantity: Int!
+}
+
+type Order
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }, { allow: owner }]) {
+  id: ID!
+  restaurantId: ID!
+  restaurant: Restaurant @connection(fields: ["restaurantId"])
+  items: [OrderItem]! @connection(keyName: "by-order", fields: ["id"])
+}

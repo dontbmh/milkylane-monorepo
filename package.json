@@ -1,0 +1,10 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "aws:ca": "aws codeartifact login --tool npm --domain simlex --domain-owner 523360775273 --repository npm-repo"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
