@@ -12,6 +12,5 @@
     "composite": true,
     "baseUrl": ".",
     "paths": { "@milkylane/*": ["*/src"] }
-  },
-  "references": [{ "path": "../api" }]
+  }
 }

@@ -3,15 +3,14 @@
   "version": "0.0.1",
   "main": "lib/index.js",
   "files": [
-    "lib",
-    "package.json"
+    "lib"
   ],
   "scripts": {
     "build": "npm run clean && tsc -b",
     "clean": "rimraf lib tsconfig.tsbuildinfo"
   },
   "dependencies": {
-    "@milkylane/model": "^0.0.12",
+    "@milkylane/model": "^0.0.1",
     "aws-amplify": "^4.1.3",
     "moment": "^2.29.1"
   },

@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "main": "lib/index.js",
   "files": [
-    "lib",
-    "package.json"
+    "lib"
   ],
   "scripts": {
     "build": "npm run clean && tsc -b",
