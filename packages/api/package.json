@@ -1,13 +1,13 @@
 {
   "name": "@milkylane/api",
   "version": "0.0.3",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "npm run clean && tsc -b",
-    "clean": "rimraf lib tsconfig.tsbuildinfo"
+    "clean": "rimraf dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
     "@milkylane/model": "^0.0.3",

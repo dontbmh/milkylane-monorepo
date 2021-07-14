@@ -28,7 +28,6 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 
-amplify/backend/function/**/src
-lib/
+amplify/backend/function/**/src/
 *.log
 *.tsbuildinfo

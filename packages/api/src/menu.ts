@@ -1,33 +1,17 @@
-import { IMenu } from '@milkylane/model';
-import { CreateMenuMutation, GetMenuQuery, Menu } from './graphql/types';
+import { CreateMenuMutation, GetMenuQuery } from './graphql/types';
 import * as mutations from './graphql/mutations';
 import * as queries from './graphql/queries';
-import { createDish, makeDish } from './dish';
-import pick from './pick';
+import { makeInterface, MenuInput } from './transformer/make-menu';
 import query from './query';
 
-const SharedProps = ['id', 'type', 'dishes'] as const;
-
-export const makeMenu = (data: Menu) => {
-  const { dishes, ...rest } = pick(data, [...SharedProps]);
-  const items = dishes?.items?.reduce(
-    (a, c) => (c.dish && a.push(makeDish(c.dish)), a),
-    [],
-  );
-  return { ...rest, dishes: items } as IMenu;
-};
-
-export const createMenu = async (data: IMenu, restaurantId: string) => {
+export const createMenu = async (input: MenuInput, restaurantId: string) => {
   const res = await query<CreateMenuMutation>({
     query: mutations.createMenu,
-    variables: { input: { type: data.type, restaurantId } },
+    variables: { input: { type: input.type, restaurantId } },
     auth: 'user-pool',
   });
 
-  const menuId = (data.id = res.createMenu.id);
-  await Promise.all(data.dishes.map(e => createDish(e, menuId)));
-
-  return data;
+  return res.createMenu && makeInterface(res.createMenu);
 };
 
 export const getMenu = async (id: string) => {
@@ -36,5 +20,5 @@ export const getMenu = async (id: string) => {
     variables: { id },
   });
 
-  return res.getMenu && makeMenu(res.getMenu);
+  return res.getMenu && makeInterface(res.getMenu);
 };

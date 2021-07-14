@@ -16,10 +16,10 @@ export interface IRestaurant {
   stars: number;
   address: string;
   location: ILocation;
+  operatingHours: IOperatingHours[];
   imageURI: string;
   mediumImageURI: string;
   thumbnailImageURI: string;
-  operatingHours?: IOperatingHours[];
   events?: IEvent[];
   menus?: IMenu[];
   reviews?: IReview[];

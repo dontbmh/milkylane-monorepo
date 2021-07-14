@@ -1,71 +1,21 @@
-import { ILocation, IRestaurant } from '@milkylane/model';
-import moment from 'moment';
+import { ILocation } from '@milkylane/model';
 import {
   CreateRestaurantMutation,
   GetRestaurantQuery,
   ListRestaurantsQuery,
   NearbyRestaurantsQuery,
-  Restaurant,
 } from './graphql/types';
 import * as mutations from './graphql/mutations';
 import * as queries from './graphql/queries';
-import { makeMenu } from './menu';
-import pick from './pick';
+import {
+  pickInput,
+  makeInterface,
+  RestaurantInput,
+} from './transformer/make-restaurant';
 import query from './query';
 
-const SharedProps = [
-  'name',
-  'description',
-  'stars',
-  'address',
-  'location',
-  'imageURI',
-  'mediumImageURI',
-  'thumbnailImageURI',
-  'operatingHours',
-] as const;
-
-const makeRestaurant = (data: Restaurant) => {
-  const { location, operatingHours, menus, ...rest } = pick(data, [
-    ...(['id', 'menus'] as const),
-    ...SharedProps,
-  ]);
-
-  const obj = {
-    ...rest,
-    location: { longitude: location[0], latitude: location[1] },
-    operatingHours: operatingHours.map(s => JSON.parse(s)),
-    menus: menus?.items?.map(makeMenu),
-  };
-
-  const ret = new Proxy(obj, {
-    get(target, name, receiver) {
-      if (name === 'operatingHoursToday') {
-        const day = moment().format('dddd').toLowerCase();
-        return target.operatingHours.find(e => e.day === day);
-      }
-
-      if (name === 'open') {
-        const hours = receiver.todayOperatingHours;
-        const open =
-          !!hours &&
-          moment().isBetween(
-            moment(hours.open, 'HH:mm'),
-            moment(hours.close === '00:00' ? '24:00' : hours.close, 'HH:mm'),
-          );
-        return open;
-      }
-
-      return Reflect.get(target, name, receiver);
-    },
-  });
-
-  return ret;
-};
-
-export const createRestaurant = async (data: IRestaurant) => {
-  const { location, operatingHours, ...rest } = pick(data, [...SharedProps]);
-
+export const createRestaurant = async (input: RestaurantInput) => {
+  const { location, operatingHours, ...rest } = pickInput(input);
   const res = await query<CreateRestaurantMutation>({
     query: mutations.createRestaurant,
     variables: {
@@ -78,9 +28,7 @@ export const createRestaurant = async (data: IRestaurant) => {
     auth: 'user-pool',
   });
 
-  data.id = res.createRestaurant.id;
-
-  return data;
+  return res.createRestaurant && makeInterface(res.createRestaurant);
 };
 
 export const getRestaurant = async (id: string) => {
@@ -89,7 +37,7 @@ export const getRestaurant = async (id: string) => {
     variables: { id },
   });
 
-  return res.getRestaurant && makeRestaurant(res.getRestaurant);
+  return res.getRestaurant && makeInterface(res.getRestaurant);
 };
 
 export const listRestaurant = async () => {
@@ -97,7 +45,7 @@ export const listRestaurant = async () => {
     query: queries.listRestaurants,
   });
 
-  return res.listRestaurants.items.map(makeRestaurant);
+  return res.listRestaurants.items?.map(makeInterface);
 };
 
 export const getNearbyRestaurants = async (
@@ -114,5 +62,5 @@ export const getNearbyRestaurants = async (
     },
   });
 
-  return res.nearbyRestaurants.items.map(makeRestaurant);
+  return res.nearbyRestaurants.items?.map(makeInterface);
 };
