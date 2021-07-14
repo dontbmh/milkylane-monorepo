@@ -31,5 +31,12 @@
         }
       }
     }
+  },
+  "function": {
+    "lsauth": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }

@@ -43,6 +43,11 @@ export const nearbyRestaurants = /* GraphQL */ `
     }
   }
 `;
+export const lsAuth = /* GraphQL */ `
+  query LsAuth($appId: String, $secret: String) {
+    lsAuth(appId: $appId, secret: $secret)
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {

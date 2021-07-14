@@ -2104,6 +2104,15 @@ export type NearbyRestaurantsQuery = {
   } | null,
 };
 
+export type LsAuthQueryVariables = {
+  appId?: string | null,
+  secret?: string | null,
+};
+
+export type LsAuthQuery = {
+  lsAuth?: string | null,
+};
+
 export type GetUserQueryVariables = {
   id: string,
 };

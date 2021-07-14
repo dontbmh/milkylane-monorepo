@@ -159,21 +159,6 @@ type EventRestaurant
   restaurant: Restaurant @connection(fields: ["restaurantId"])
 }
 
-type Query {
-  nearbyRestaurants(
-    location: [Float]!
-    distance: String
-    limit: Int
-    nextToken: String
-  ): RestaurantConnection @aws_api_key
-}
-
-type RestaurantConnection @aws_api_key {
-  items: [Restaurant]
-  nextToken: String
-  total: Int
-}
-
 type OrderItem
   @model
   @auth(rules: [{ allow: groups, groups: ["Admin"] }, { allow: owner }])
@@ -192,4 +177,22 @@ type Order
   restaurantId: ID!
   restaurant: Restaurant @connection(fields: ["restaurantId"])
   items: [OrderItem]! @connection(keyName: "by-order", fields: ["id"])
+}
+
+type Query {
+  nearbyRestaurants(
+    location: [Float]!
+    distance: String
+    limit: Int
+    nextToken: String
+  ): RestaurantConnection @aws_api_key
+  lsAuth(appId: String, secret: String): AWSJSON
+    @function(name: "lsauth-${env}")
+    @aws_api_key
+}
+
+type RestaurantConnection @aws_api_key {
+  items: [Restaurant]
+  nextToken: String
+  total: Int
 }

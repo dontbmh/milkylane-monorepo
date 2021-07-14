@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "milkylane32e6a0a9": {}
+      },
+      "function": {
+        "lsauth": {
+          "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
+          "s3Key": "amplify-builds/lsauth-694e44774d6567417a34-build.zip"
+        }
       }
     }
   }

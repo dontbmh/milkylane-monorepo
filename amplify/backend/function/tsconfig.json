@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES5",
-    "lib": ["DOM", "ES2017"],
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "lib": ["ES2017"],
     "allowJs": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "composite": true,
-    "baseUrl": ".",
-    "paths": { "@milkylane/*": ["*/src"] }
+    "resolveJsonModule": true
   }
 }
