@@ -1,6 +1,6 @@
 {
   "name": "@milkylane/function-sync-restaurants",
-  "version": "2.0.0",
+  "version": "0.0.4",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,6 @@
     "build": "npm run clean && npm run tsc"
   },
   "dependencies": {
-    "@milkylane/graphql": "^0.0.3"
+    "@milkylane/graphql": "^0.0.4"
   }
 }

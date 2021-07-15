@@ -1,6 +1,6 @@
 {
   "name": "@milkylane/function",
-  "version": "1.0.0",
+  "version": "0.0.4",
   "private": true,
   "devDependencies": {
     "@types/aws-lambda": "^8.10.78",

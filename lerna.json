@@ -1,5 +1,5 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4",
   "packages": [
     "packages/*",
     "amplify/backend/function",
@@ -10,7 +10,9 @@
       "registry": "https://simlex-523360775273.d.codeartifact.us-east-1.amazonaws.com/npm/npm-repo/"
     },
     "bootstrap": {
-      "npmClientArgs": ["--no-package-lock"]
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
     }
   }
 }
