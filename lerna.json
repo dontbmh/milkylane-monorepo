@@ -1,10 +1,6 @@
 {
   "version": "0.0.3",
-  "packages": [
-    "packages/*",
-    "amplify/backend/function",
-    "amplify/backend/function/*/app"
-  ],
+  "packages": ["packages/*", "amplify/backend/function"],
   "command": {
     "publish": {
       "registry": "https://simlex-523360775273.d.codeartifact.us-east-1.amazonaws.com/npm/npm-repo/"

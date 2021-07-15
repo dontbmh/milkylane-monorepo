@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "tsc": "./node_modules/.bin/tsc -b .",
-    "clean": "./node_modules/.bin/rimraf ./*/src ./*/dist tsconfig.tsbuildinfo",
-    "build": "npm run clean && npm run tsc"
+    "clean": "./node_modules/.bin/rimraf ./*/src ./*/dist ./*/lib/nodejs ./**/tsconfig.tsbuildinfo",
+    "build": "npm run clean && npm run tsc",
+    "prepublishOnly": "./node_modules/.bin/rimraf **/tsconfig.tsbuildinfo"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.78",
