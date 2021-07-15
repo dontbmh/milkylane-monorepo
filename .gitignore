@@ -29,5 +29,6 @@ amplifytools.xcconfig
 .secret-*
 
 amplify/backend/function/**/src/
+amplify/backend/function/**/lib/
 *.log
 *.tsbuildinfo
