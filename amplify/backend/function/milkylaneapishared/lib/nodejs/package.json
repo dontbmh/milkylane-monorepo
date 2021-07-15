@@ -1,15 +1,14 @@
 {
-    "name": "@milkylane/api-shared",
-    "version": "2.0.0",
+    "name": "@milkylane/function-api-shared",
+    "version": "0.0.4",
     "private": true,
     "main": "index.js",
     "scripts": {
-        "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b .",
-        "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
-        "prepublishOnly": "./node_modules/.bin/rimraf ../lib/nodejs/tsconfig.tsbuildinfo",
+        "tsc": "$INIT_CWD/../../node_modules/.bin/tsc -b .",
+        "clean": "$INIT_CWD/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
         "build": "npm run clean && npm run tsc"
     },
     "dependencies": {
-        "@milkylane/graphql": "^0.0.3"
+        "@milkylane/graphql": "^0.0.4"
     }
 }

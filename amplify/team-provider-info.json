@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "milkylane32e6a0a9": {}
+      },
+      "function": {
+        "syncrestaurants": {
+          "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
+          "s3Key": "amplify-builds/syncrestaurants-64583953334a346a7036-build.zip"
+        },
+        "milkylaneapishared": {
+          "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
+          "s3Key": "amplify-builds/milkylaneapishared-LambdaLayerVersionc355119b-build.zip"
+        }
       }
     }
   }

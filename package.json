@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "aws:ca": "aws codeartifact login --tool npm --domain simlex --domain-owner 523360775273 --repository npm-repo",
-    "build:amplify": "lerna run build --scope=@milkylane/function-* --stream",
-    "build:packages": "lerna run build --ignore=@milkylane/function-* --stream",
-    "build": "lerna run build --stream",
+    "build:funcs": "lerna run build --scope=@milkylane/function-* --stream",
+    "build:libs": "lerna run build --ignore=@milkylane/function-* --stream",
+    "build": "npm run build:libs && npm run build:funcs",
     "bootstrap": "npm run aws:ca && lerna bootstrap",
     "publish": "npm run aws:ca && lerna publish"
   },

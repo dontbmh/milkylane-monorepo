@@ -4,9 +4,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b .",
-    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
-    "prepublishOnly": "%INIT_CWD%/../../node_modules/.bin/rimraf ../lib/nodejs/tsconfig.tsbuildinfo",
+    "tsc": "$INIT_CWD/../../node_modules/.bin/tsc -b .",
+    "clean": "$INIT_CWD/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
     "build": "npm run clean && npm run tsc"
   },
   "dependencies": {
