@@ -1,6 +1,6 @@
-import { IRestaurant } from 'model/src/Restaurant';
+import { Restaurant } from '@milkylane/graphql';
+import { IRestaurant } from '@milkylane/model';
 import moment from 'moment';
-import { Restaurant } from '../graphql/types';
 import pick from '../utils/pick';
 import { makeInterface as makeMenu } from './make-menu';
 

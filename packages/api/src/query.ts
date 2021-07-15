@@ -21,8 +21,8 @@ const query = async <T extends any>(options: Options, headers?: Headers) => {
       ...rest,
     },
     headers,
-  )) as GraphQLResult<object>;
-  return result.data as T;
+  )) as GraphQLResult<T>;
+  return result.data;
 };
 
 export default query;

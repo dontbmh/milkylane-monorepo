@@ -2,9 +2,9 @@ import {
   CreateDishMenuMutation,
   CreateDishMutation,
   GetDishQuery,
-} from './graphql/types';
-import * as mutations from './graphql/mutations';
-import * as queries from './graphql/queries';
+  mutations,
+  queries,
+} from '@milkylane/graphql';
 import { DishInput, makeInterface, pickInput } from './transformer/make-dish';
 import query from './query';
 

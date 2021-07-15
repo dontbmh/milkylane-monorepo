@@ -1,5 +1,5 @@
+import { Menu } from '@milkylane/graphql';
 import { IMenu } from '@milkylane/model';
-import { Menu } from '../graphql/types';
 import pick from '../utils/pick';
 import { makeInterface as makeDish } from './make-dish';
 

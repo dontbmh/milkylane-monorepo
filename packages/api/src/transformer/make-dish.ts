@@ -1,5 +1,5 @@
+import { Dish } from '@milkylane/graphql';
 import { IDish } from '@milkylane/model';
-import { Dish } from '../graphql/types';
 import pick from '../utils/pick';
 
 export const SharedProps = [

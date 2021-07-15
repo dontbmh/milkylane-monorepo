@@ -1,15 +1,15 @@
 projects:
   milkylane:
-    schemaPath: packages/api/src/graphql/schema.json
+    schemaPath: packages/graphql/src/schema.json
     includes:
-      - packages/api/src/graphql/**/*.ts
+      - packages/graphql/src/**/*.ts
     excludes:
       - ./amplify/**
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: packages/api/src/graphql/types.ts
-        docsFilePath: packages/api/src/graphql
+        generatedFileName: packages/graphql/src/types.ts
+        docsFilePath: packages/graphql/src
 extensions:
   amplify:
     version: 3

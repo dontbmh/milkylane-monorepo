@@ -1,6 +1,9 @@
-import { CreateMenuMutation, GetMenuQuery } from './graphql/types';
-import * as mutations from './graphql/mutations';
-import * as queries from './graphql/queries';
+import {
+  CreateMenuMutation,
+  GetMenuQuery,
+  mutations,
+  queries,
+} from '@milkylane/graphql';
 import { makeInterface, MenuInput } from './transformer/make-menu';
 import query from './query';
 

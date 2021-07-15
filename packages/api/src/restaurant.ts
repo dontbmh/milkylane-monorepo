@@ -1,12 +1,12 @@
-import { ILocation } from '@milkylane/model';
 import {
   CreateRestaurantMutation,
   GetRestaurantQuery,
   ListRestaurantsQuery,
   NearbyRestaurantsQuery,
-} from './graphql/types';
-import * as mutations from './graphql/mutations';
-import * as queries from './graphql/queries';
+  mutations,
+  queries,
+} from '@milkylane/graphql';
+import { ILocation } from '@milkylane/model';
 import {
   pickInput,
   makeInterface,

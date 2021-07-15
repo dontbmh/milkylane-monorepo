@@ -1,5 +1,5 @@
 import api from '.';
-import * as queries from './graphql/queries';
+import { queries } from '@milkylane/graphql';
 
 (async () => {
   api.configure();
@@ -18,6 +18,4 @@ import * as queries from './graphql/queries';
   } catch (error) {
     console.log(error);
   }
-
-
 })();

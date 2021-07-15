@@ -5,7 +5,7 @@
   "javascript": {
     "framework": "none",
     "config": {
-      "SourceDir": "packages/api/src",
+      "SourceDir": "packages/graphql/src",
       "DistributionDir": "dist",
       "BuildCommand": "npm.cmd run-script build",
       "StartCommand": "npm.cmd run-script start"

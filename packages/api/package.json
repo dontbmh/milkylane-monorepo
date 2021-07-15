@@ -10,6 +10,7 @@
     "clean": "rimraf dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
+    "@milkylane/graphql": "^0.0.3",
     "@milkylane/model": "^0.0.3",
     "aws-amplify": "^4.1.3",
     "moment": "^2.29.1"

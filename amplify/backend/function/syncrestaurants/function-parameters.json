@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "api": {
+      "milkylane": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "milkylaneapishared",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ],
+  "secretNames": [
+    "lightspeed_client_id",
+    "lightspeed_client_secret"
+  ]
+}

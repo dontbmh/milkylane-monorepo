@@ -1,6 +1,7 @@
 {
   "name": "@milkylane/function",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "tsc": "./node_modules/.bin/tsc -b .",
     "clean": "./node_modules/.bin/rimraf ./*/src ./*/dist tsconfig.tsbuildinfo",

@@ -10,7 +10,12 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "composite": true
+    "composite": true,
+    "baseUrl": ".",
+    "paths": { "@milkylane/api-shared": ["milkylaneapishared/app"] }
   },
-  "references": [{ "path": "./lsauth/app" }]
+  "references": [
+    { "path": "./milkylaneapishared/app" },
+    { "path": "./syncrestaurants/app" }
+  ]
 }
