@@ -991,18 +991,6 @@ export const createOrder = /* GraphQL */ `
     createOrder(input: $input, condition: $condition) {
       id
       restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
       createdAt
       updatedAt
       restaurant {
@@ -1027,6 +1015,18 @@ export const createOrder = /* GraphQL */ `
         events {
           nextToken
         }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       owner
     }
@@ -1040,18 +1040,6 @@ export const updateOrder = /* GraphQL */ `
     updateOrder(input: $input, condition: $condition) {
       id
       restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
       createdAt
       updatedAt
       restaurant {
@@ -1076,6 +1064,18 @@ export const updateOrder = /* GraphQL */ `
         events {
           nextToken
         }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       owner
     }
@@ -1089,18 +1089,6 @@ export const deleteOrder = /* GraphQL */ `
     deleteOrder(input: $input, condition: $condition) {
       id
       restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
       createdAt
       updatedAt
       restaurant {
@@ -1125,6 +1113,18 @@ export const deleteOrder = /* GraphQL */ `
         events {
           nextToken
         }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
       }
       owner
     }

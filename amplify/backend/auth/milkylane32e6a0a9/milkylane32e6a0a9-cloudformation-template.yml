@@ -121,6 +121,26 @@ Parameters:
   usernameAttributes:
     Type: CommaDelimitedList
       
+        
+  userPoolGroupList:
+    Type: CommaDelimitedList
+      
+  serviceName:
+    Type: String
+  
+            
+  
+  usernameCaseSensitive:
+    Type: String
+            
+        
+  dependsOn:
+    Type: CommaDelimitedList
+      
+  hostedUIProviderCreds:
+    Type: String
+  
+            
   hostedUIDomainName:
     Type: String
   
@@ -133,29 +153,13 @@ Parameters:
     Type: String
   
             
-  hostedUIProviderCreds:
-    Type: String
-  
-            
   oAuthMetadata:
     Type: String
   
             
-        
-  userPoolGroupList:
-    Type: CommaDelimitedList
-      
-            
-  serviceName:
-    Type: String
-  
-            
-  
-  usernameCaseSensitive:
-    Type: String
             
         
-  dependsOn:
+  authProviders:
     Type: CommaDelimitedList
       
 Conditions:

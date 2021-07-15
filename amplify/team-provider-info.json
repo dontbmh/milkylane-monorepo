@@ -18,7 +18,7 @@
       "function": {
         "lsauth": {
           "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
-          "s3Key": "amplify-builds/lsauth-694e44774d6567417a34-build.zip"
+          "s3Key": "amplify-builds/lsauth-3337566a624871616d4d-build.zip"
         }
       }
     }

@@ -2,13 +2,8 @@
   "name": "lsauth",
   "version": "2.0.0",
   "main": "index.js",
-  "scripts": {
-    "build": "npm run tsc"
-  },
-  "devDependencies": {
-    "@types/aws-lambda": "^8.10.78",
-    "@types/aws-sdk": "^2.7.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.3.5"
+  "dependencies": {
+    "axios": "^0.21.1",
+    "graphql": "^15.5.1"
   }
 }

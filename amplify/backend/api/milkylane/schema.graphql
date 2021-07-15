@@ -123,6 +123,7 @@ type Restaurant
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   ) {

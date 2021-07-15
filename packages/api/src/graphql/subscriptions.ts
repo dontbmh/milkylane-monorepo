@@ -35,240 +35,6 @@ export const onDeleteUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreateOrderItem = /* GraphQL */ `
-  subscription OnCreateOrderItem($owner: String) {
-    onCreateOrderItem(owner: $owner) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onUpdateOrderItem = /* GraphQL */ `
-  subscription OnUpdateOrderItem($owner: String) {
-    onUpdateOrderItem(owner: $owner) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onDeleteOrderItem = /* GraphQL */ `
-  subscription OnDeleteOrderItem($owner: String) {
-    onDeleteOrderItem(owner: $owner) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onCreateOrder = /* GraphQL */ `
-  subscription OnCreateOrder($owner: String) {
-    onCreateOrder(owner: $owner) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onUpdateOrder = /* GraphQL */ `
-  subscription OnUpdateOrder($owner: String) {
-    onUpdateOrder(owner: $owner) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const onDeleteOrder = /* GraphQL */ `
-  subscription OnDeleteOrder($owner: String) {
-    onDeleteOrder(owner: $owner) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
 export const onCreateReview = /* GraphQL */ `
   subscription OnCreateReview($owner: String) {
     onCreateReview(owner: $owner) {
@@ -1037,6 +803,240 @@ export const onDeleteEventRestaurant = /* GraphQL */ `
           nextToken
         }
       }
+    }
+  }
+`;
+export const onCreateOrderItem = /* GraphQL */ `
+  subscription OnCreateOrderItem($owner: String) {
+    onCreateOrderItem(owner: $owner) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateOrderItem = /* GraphQL */ `
+  subscription OnUpdateOrderItem($owner: String) {
+    onUpdateOrderItem(owner: $owner) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteOrderItem = /* GraphQL */ `
+  subscription OnDeleteOrderItem($owner: String) {
+    onDeleteOrderItem(owner: $owner) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const onCreateOrder = /* GraphQL */ `
+  subscription OnCreateOrder($owner: String) {
+    onCreateOrder(owner: $owner) {
+      id
+      restaurantId
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onUpdateOrder = /* GraphQL */ `
+  subscription OnUpdateOrder($owner: String) {
+    onUpdateOrder(owner: $owner) {
+      id
+      restaurantId
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const onDeleteOrder = /* GraphQL */ `
+  subscription OnDeleteOrder($owner: String) {
+    onDeleteOrder(owner: $owner) {
+      id
+      restaurantId
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      owner
     }
   }
 `;

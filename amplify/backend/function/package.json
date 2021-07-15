@@ -1,0 +1,19 @@
+{
+  "name": "@milkylane/function",
+  "version": "1.0.0",
+  "scripts": {
+    "tsc": "./node_modules/.bin/tsc -b .",
+    "clean": "./node_modules/.bin/rimraf ./*/src ./*/dist tsconfig.tsbuildinfo",
+    "build": "npm run clean && npm run tsc"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.78",
+    "@types/aws-sdk": "^2.7.0",
+    "aws-appsync": "^4.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/node": "^16.3.2"
+  }
+}

@@ -77,152 +77,6 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
-export const getOrderItem = /* GraphQL */ `
-  query GetOrderItem($id: ID!) {
-    getOrderItem(id: $id) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const listOrderItems = /* GraphQL */ `
-  query ListOrderItems(
-    $filter: ModelOrderItemFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listOrderItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        orderId
-        dishId
-        quantity
-        createdAt
-        updatedAt
-        dish {
-          id
-          name
-          description
-          stars
-          price
-          ingredients
-          imageURI
-          mediumImageURI
-          thumbnailImageURI
-          createdAt
-          updatedAt
-        }
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getOrder = /* GraphQL */ `
-  query GetOrder($id: ID!) {
-    getOrder(id: $id) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const listOrders = /* GraphQL */ `
-  query ListOrders(
-    $filter: ModelOrderFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        restaurantId
-        items {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        restaurant {
-          id
-          name
-          description
-          stars
-          address
-          location
-          imageURI
-          mediumImageURI
-          thumbnailImageURI
-          operatingHours
-          createdAt
-          updatedAt
-        }
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getReview = /* GraphQL */ `
   query GetReview($id: ID!) {
     getReview(id: $id) {
@@ -567,6 +421,152 @@ export const searchRestaurants = /* GraphQL */ `
       }
       nextToken
       total
+    }
+  }
+`;
+export const getOrderItem = /* GraphQL */ `
+  query GetOrderItem($id: ID!) {
+    getOrderItem(id: $id) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const listOrderItems = /* GraphQL */ `
+  query ListOrderItems(
+    $filter: ModelOrderItemFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrderItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        orderId
+        dishId
+        quantity
+        createdAt
+        updatedAt
+        dish {
+          id
+          name
+          description
+          stars
+          price
+          ingredients
+          imageURI
+          mediumImageURI
+          thumbnailImageURI
+          createdAt
+          updatedAt
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getOrder = /* GraphQL */ `
+  query GetOrder($id: ID!) {
+    getOrder(id: $id) {
+      id
+      restaurantId
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      owner
+    }
+  }
+`;
+export const listOrders = /* GraphQL */ `
+  query ListOrders(
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        restaurantId
+        createdAt
+        updatedAt
+        restaurant {
+          id
+          name
+          description
+          stars
+          address
+          location
+          imageURI
+          mediumImageURI
+          thumbnailImageURI
+          operatingHours
+          createdAt
+          updatedAt
+        }
+        items {
+          nextToken
+        }
+        owner
+      }
+      nextToken
     }
   }
 `;

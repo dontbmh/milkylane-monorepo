@@ -30,5 +30,5 @@ export const getDish = async (id: string) => {
     variables: { id },
   });
 
-  return res.getDish && makeDish(res.getDish);
+  return res.getDish && makeInterface(res.getDish);
 };
