@@ -3,6 +3,12 @@
   "version": "2.0.0",
   "private": true,
   "main": "index.js",
+  "scripts": {
+    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b .",
+    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../src ",
+    "prepublishOnly": "./node_modules/.bin/rimraf ../src/tsconfig.tsbuildinfo",
+    "build": "npm run clean && npm run tsc"
+  },
   "dependencies": {
     "@milkylane/graphql": "^0.0.3"
   }

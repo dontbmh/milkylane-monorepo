@@ -13,9 +13,5 @@
     "composite": true,
     "baseUrl": ".",
     "paths": { "@milkylane/api-shared": ["milkylaneapishared/app"] }
-  },
-  "references": [
-    { "path": "./milkylaneapishared/app" },
-    { "path": "./syncrestaurants/app" }
-  ]
+  }
 }

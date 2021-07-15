@@ -5,7 +5,7 @@
     "aws:ca": "aws codeartifact login --tool npm --domain simlex --domain-owner 523360775273 --repository npm-repo",
     "build:amplify": "lerna run build --scope=@milkylane/function --stream",
     "build:packages": "lerna run build --ignore=@milkylane/function --stream",
-    "build": "npm run build:packages && npm run build:amplify",
+    "build": "lerna run build --stream",
     "bootstrap": "npm run aws:ca && lerna bootstrap",
     "publish": "npm run aws:ca && lerna publish"
   },
