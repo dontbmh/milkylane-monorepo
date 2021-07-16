@@ -44,6 +44,258 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
+export const createOrderItem = /* GraphQL */ `
+  mutation CreateOrderItem(
+    $input: CreateOrderItemInput!
+    $condition: ModelOrderItemConditionInput
+  ) {
+    createOrderItem(input: $input, condition: $condition) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updateOrderItem = /* GraphQL */ `
+  mutation UpdateOrderItem(
+    $input: UpdateOrderItemInput!
+    $condition: ModelOrderItemConditionInput
+  ) {
+    updateOrderItem(input: $input, condition: $condition) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deleteOrderItem = /* GraphQL */ `
+  mutation DeleteOrderItem(
+    $input: DeleteOrderItemInput!
+    $condition: ModelOrderItemConditionInput
+  ) {
+    deleteOrderItem(input: $input, condition: $condition) {
+      id
+      orderId
+      dishId
+      quantity
+      createdAt
+      updatedAt
+      dish {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const createOrder = /* GraphQL */ `
+  mutation CreateOrder(
+    $input: CreateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    createOrder(input: $input, condition: $condition) {
+      id
+      restaurantId
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updateOrder = /* GraphQL */ `
+  mutation UpdateOrder(
+    $input: UpdateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    updateOrder(input: $input, condition: $condition) {
+      id
+      restaurantId
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deleteOrder = /* GraphQL */ `
+  mutation DeleteOrder(
+    $input: DeleteOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    deleteOrder(input: $input, condition: $condition) {
+      id
+      restaurantId
+      items {
+        items {
+          id
+          orderId
+          dishId
+          quantity
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+      owner
+    }
+  }
+`;
 export const createReview = /* GraphQL */ `
   mutation CreateReview(
     $input: CreateReviewInput!
@@ -542,426 +794,6 @@ export const deleteEvent = /* GraphQL */ `
     }
   }
 `;
-export const createEventRestaurant = /* GraphQL */ `
-  mutation CreateEventRestaurant(
-    $input: CreateEventRestaurantInput!
-    $condition: ModelEventRestaurantConditionInput
-  ) {
-    createEventRestaurant(input: $input, condition: $condition) {
-      id
-      eventId
-      restaurantId
-      createdAt
-      updatedAt
-      event {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const updateEventRestaurant = /* GraphQL */ `
-  mutation UpdateEventRestaurant(
-    $input: UpdateEventRestaurantInput!
-    $condition: ModelEventRestaurantConditionInput
-  ) {
-    updateEventRestaurant(input: $input, condition: $condition) {
-      id
-      eventId
-      restaurantId
-      createdAt
-      updatedAt
-      event {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const deleteEventRestaurant = /* GraphQL */ `
-  mutation DeleteEventRestaurant(
-    $input: DeleteEventRestaurantInput!
-    $condition: ModelEventRestaurantConditionInput
-  ) {
-    deleteEventRestaurant(input: $input, condition: $condition) {
-      id
-      eventId
-      restaurantId
-      createdAt
-      updatedAt
-      event {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-    }
-  }
-`;
-export const createOrderItem = /* GraphQL */ `
-  mutation CreateOrderItem(
-    $input: CreateOrderItemInput!
-    $condition: ModelOrderItemConditionInput
-  ) {
-    createOrderItem(input: $input, condition: $condition) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const updateOrderItem = /* GraphQL */ `
-  mutation UpdateOrderItem(
-    $input: UpdateOrderItemInput!
-    $condition: ModelOrderItemConditionInput
-  ) {
-    updateOrderItem(input: $input, condition: $condition) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const deleteOrderItem = /* GraphQL */ `
-  mutation DeleteOrderItem(
-    $input: DeleteOrderItemInput!
-    $condition: ModelOrderItemConditionInput
-  ) {
-    deleteOrderItem(input: $input, condition: $condition) {
-      id
-      orderId
-      dishId
-      quantity
-      createdAt
-      updatedAt
-      dish {
-        id
-        name
-        description
-        stars
-        price
-        ingredients
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const createOrder = /* GraphQL */ `
-  mutation CreateOrder(
-    $input: CreateOrderInput!
-    $condition: ModelOrderConditionInput
-  ) {
-    createOrder(input: $input, condition: $condition) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const updateOrder = /* GraphQL */ `
-  mutation UpdateOrder(
-    $input: UpdateOrderInput!
-    $condition: ModelOrderConditionInput
-  ) {
-    updateOrder(input: $input, condition: $condition) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
-export const deleteOrder = /* GraphQL */ `
-  mutation DeleteOrder(
-    $input: DeleteOrderInput!
-    $condition: ModelOrderConditionInput
-  ) {
-    deleteOrder(input: $input, condition: $condition) {
-      id
-      restaurantId
-      items {
-        items {
-          id
-          orderId
-          dishId
-          quantity
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      restaurant {
-        id
-        name
-        description
-        stars
-        address
-        location
-        imageURI
-        mediumImageURI
-        thumbnailImageURI
-        operatingHours
-        createdAt
-        updatedAt
-        reviews {
-          nextToken
-        }
-        menus {
-          nextToken
-        }
-        events {
-          nextToken
-        }
-      }
-      owner
-    }
-  }
-`;
 export const createRestaurant = /* GraphQL */ `
   mutation CreateRestaurant(
     $input: CreateRestaurantInput!
@@ -1126,6 +958,174 @@ export const deleteRestaurant = /* GraphQL */ `
           updatedAt
         }
         nextToken
+      }
+    }
+  }
+`;
+export const createEventRestaurant = /* GraphQL */ `
+  mutation CreateEventRestaurant(
+    $input: CreateEventRestaurantInput!
+    $condition: ModelEventRestaurantConditionInput
+  ) {
+    createEventRestaurant(input: $input, condition: $condition) {
+      id
+      eventId
+      restaurantId
+      createdAt
+      updatedAt
+      event {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateEventRestaurant = /* GraphQL */ `
+  mutation UpdateEventRestaurant(
+    $input: UpdateEventRestaurantInput!
+    $condition: ModelEventRestaurantConditionInput
+  ) {
+    updateEventRestaurant(input: $input, condition: $condition) {
+      id
+      eventId
+      restaurantId
+      createdAt
+      updatedAt
+      event {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteEventRestaurant = /* GraphQL */ `
+  mutation DeleteEventRestaurant(
+    $input: DeleteEventRestaurantInput!
+    $condition: ModelEventRestaurantConditionInput
+  ) {
+    deleteEventRestaurant(input: $input, condition: $condition) {
+      id
+      eventId
+      restaurantId
+      createdAt
+      updatedAt
+      event {
+        id
+        name
+        description
+        stars
+        price
+        ingredients
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+      }
+      restaurant {
+        id
+        name
+        description
+        stars
+        address
+        location
+        imageURI
+        mediumImageURI
+        thumbnailImageURI
+        operatingHours
+        createdAt
+        updatedAt
+        reviews {
+          nextToken
+        }
+        menus {
+          nextToken
+        }
+        events {
+          nextToken
+        }
       }
     }
   }

@@ -75,6 +75,218 @@ export type DeleteUserInput = {
   id: string,
 };
 
+export type CreateOrderItemInput = {
+  id?: string | null,
+  orderId: string,
+  dishId: string,
+  quantity: number,
+};
+
+export type ModelOrderItemConditionInput = {
+  orderId?: ModelIDInput | null,
+  dishId?: ModelIDInput | null,
+  quantity?: ModelIntInput | null,
+  and?: Array< ModelOrderItemConditionInput | null > | null,
+  or?: Array< ModelOrderItemConditionInput | null > | null,
+  not?: ModelOrderItemConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type OrderItem = {
+  __typename: "OrderItem",
+  id?: string,
+  orderId?: string,
+  dishId?: string,
+  quantity?: number,
+  createdAt?: string,
+  updatedAt?: string,
+  dish?: Dish,
+  owner?: string | null,
+};
+
+export type Dish = {
+  __typename: "Dish",
+  id?: string,
+  name?: string,
+  description?: string,
+  stars?: number,
+  price?: number,
+  ingredients?: Array< string | null > | null,
+  imageURI?: string,
+  mediumImageURI?: string,
+  thumbnailImageURI?: string,
+  createdAt?: string,
+  updatedAt?: string,
+  reviews?: ModelReviewConnection,
+  menus?: ModelDishMenuConnection,
+};
+
+export type ModelReviewConnection = {
+  __typename: "ModelReviewConnection",
+  items?:  Array<Review | null > | null,
+  nextToken?: string | null,
+};
+
+export type Review = {
+  __typename: "Review",
+  id?: string,
+  dishId?: string,
+  restaurantId?: string,
+  title?: string,
+  stars?: number,
+  content?: string,
+  reviewerId?: string,
+  reviewer?: User,
+  createdAt?: string,
+  updatedAt?: string,
+  owner?: string | null,
+};
+
+export type ModelDishMenuConnection = {
+  __typename: "ModelDishMenuConnection",
+  items?:  Array<DishMenu | null > | null,
+  nextToken?: string | null,
+};
+
+export type DishMenu = {
+  __typename: "DishMenu",
+  id?: string,
+  dishId?: string,
+  menuId?: string,
+  createdAt?: string,
+  updatedAt?: string,
+  dish?: Dish,
+  menu?: Menu,
+};
+
+export type Menu = {
+  __typename: "Menu",
+  id?: string,
+  restaurantId?: string,
+  type?: string,
+  createdAt?: string,
+  updatedAt?: string,
+  dishes?: ModelDishMenuConnection,
+};
+
+export type UpdateOrderItemInput = {
+  id: string,
+  orderId?: string | null,
+  dishId?: string | null,
+  quantity?: number | null,
+};
+
+export type DeleteOrderItemInput = {
+  id: string,
+};
+
+export type CreateOrderInput = {
+  id?: string | null,
+  restaurantId: string,
+};
+
+export type ModelOrderConditionInput = {
+  restaurantId?: ModelIDInput | null,
+  and?: Array< ModelOrderConditionInput | null > | null,
+  or?: Array< ModelOrderConditionInput | null > | null,
+  not?: ModelOrderConditionInput | null,
+};
+
+export type Order = {
+  __typename: "Order",
+  id?: string,
+  restaurantId?: string,
+  items?: ModelOrderItemConnection,
+  createdAt?: string,
+  updatedAt?: string,
+  restaurant?: Restaurant,
+  owner?: string | null,
+};
+
+export type ModelOrderItemConnection = {
+  __typename: "ModelOrderItemConnection",
+  items?:  Array<OrderItem | null > | null,
+  nextToken?: string | null,
+};
+
+export type Restaurant = {
+  __typename: "Restaurant",
+  id?: string,
+  name?: string,
+  description?: string,
+  stars?: number,
+  address?: string,
+  location?: Array< number | null >,
+  imageURI?: string,
+  mediumImageURI?: string,
+  thumbnailImageURI?: string,
+  operatingHours?: Array< string | null >,
+  createdAt?: string,
+  updatedAt?: string,
+  reviews?: ModelReviewConnection,
+  menus?: ModelMenuConnection,
+  events?: ModelEventRestaurantConnection,
+};
+
+export type ModelMenuConnection = {
+  __typename: "ModelMenuConnection",
+  items?:  Array<Menu | null > | null,
+  nextToken?: string | null,
+};
+
+export type ModelEventRestaurantConnection = {
+  __typename: "ModelEventRestaurantConnection",
+  items?:  Array<EventRestaurant | null > | null,
+  nextToken?: string | null,
+};
+
+export type EventRestaurant = {
+  __typename: "EventRestaurant",
+  id?: string,
+  eventId?: string,
+  restaurantId?: string,
+  createdAt?: string,
+  updatedAt?: string,
+  event?: Dish,
+  restaurant?: Restaurant,
+};
+
+export type UpdateOrderInput = {
+  id: string,
+  restaurantId?: string | null,
+};
+
+export type DeleteOrderInput = {
+  id: string,
+};
+
 export type CreateReviewInput = {
   id?: string | null,
   dishId: string,
@@ -97,22 +309,6 @@ export type ModelReviewConditionInput = {
   not?: ModelReviewConditionInput | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
 export type ModelFloatInput = {
   ne?: number | null,
   eq?: number | null,
@@ -123,21 +319,6 @@ export type ModelFloatInput = {
   between?: Array< number | null > | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
-};
-
-export type Review = {
-  __typename: "Review",
-  id?: string,
-  dishId?: string,
-  restaurantId?: string,
-  title?: string,
-  stars?: number,
-  content?: string,
-  reviewerId?: string,
-  reviewer?: User,
-  createdAt?: string,
-  updatedAt?: string,
-  owner?: string | null,
 };
 
 export type UpdateReviewInput = {
@@ -178,56 +359,6 @@ export type ModelDishConditionInput = {
   and?: Array< ModelDishConditionInput | null > | null,
   or?: Array< ModelDishConditionInput | null > | null,
   not?: ModelDishConditionInput | null,
-};
-
-export type Dish = {
-  __typename: "Dish",
-  id?: string,
-  name?: string,
-  description?: string,
-  stars?: number,
-  price?: number,
-  ingredients?: Array< string | null > | null,
-  imageURI?: string,
-  mediumImageURI?: string,
-  thumbnailImageURI?: string,
-  createdAt?: string,
-  updatedAt?: string,
-  reviews?: ModelReviewConnection,
-  menus?: ModelDishMenuConnection,
-};
-
-export type ModelReviewConnection = {
-  __typename: "ModelReviewConnection",
-  items?:  Array<Review | null > | null,
-  nextToken?: string | null,
-};
-
-export type ModelDishMenuConnection = {
-  __typename: "ModelDishMenuConnection",
-  items?:  Array<DishMenu | null > | null,
-  nextToken?: string | null,
-};
-
-export type DishMenu = {
-  __typename: "DishMenu",
-  id?: string,
-  dishId?: string,
-  menuId?: string,
-  createdAt?: string,
-  updatedAt?: string,
-  dish?: Dish,
-  menu?: Menu,
-};
-
-export type Menu = {
-  __typename: "Menu",
-  id?: string,
-  restaurantId?: string,
-  type?: string,
-  createdAt?: string,
-  updatedAt?: string,
-  dishes?: ModelDishMenuConnection,
 };
 
 export type UpdateDishInput = {
@@ -330,48 +461,6 @@ export type Event = {
   restaurants?: ModelEventRestaurantConnection,
 };
 
-export type ModelEventRestaurantConnection = {
-  __typename: "ModelEventRestaurantConnection",
-  items?:  Array<EventRestaurant | null > | null,
-  nextToken?: string | null,
-};
-
-export type EventRestaurant = {
-  __typename: "EventRestaurant",
-  id?: string,
-  eventId?: string,
-  restaurantId?: string,
-  createdAt?: string,
-  updatedAt?: string,
-  event?: Dish,
-  restaurant?: Restaurant,
-};
-
-export type Restaurant = {
-  __typename: "Restaurant",
-  id?: string,
-  name?: string,
-  description?: string,
-  stars?: number,
-  address?: string,
-  location?: Array< number | null >,
-  imageURI?: string,
-  mediumImageURI?: string,
-  thumbnailImageURI?: string,
-  operatingHours?: Array< string | null >,
-  createdAt?: string,
-  updatedAt?: string,
-  reviews?: ModelReviewConnection,
-  menus?: ModelMenuConnection,
-  events?: ModelEventRestaurantConnection,
-};
-
-export type ModelMenuConnection = {
-  __typename: "ModelMenuConnection",
-  items?:  Array<Menu | null > | null,
-  nextToken?: string | null,
-};
-
 export type UpdateEventInput = {
   id: string,
   name?: string | null,
@@ -383,119 +472,6 @@ export type UpdateEventInput = {
 };
 
 export type DeleteEventInput = {
-  id: string,
-};
-
-export type CreateEventRestaurantInput = {
-  id?: string | null,
-  eventId: string,
-  restaurantId: string,
-};
-
-export type ModelEventRestaurantConditionInput = {
-  eventId?: ModelIDInput | null,
-  restaurantId?: ModelIDInput | null,
-  and?: Array< ModelEventRestaurantConditionInput | null > | null,
-  or?: Array< ModelEventRestaurantConditionInput | null > | null,
-  not?: ModelEventRestaurantConditionInput | null,
-};
-
-export type UpdateEventRestaurantInput = {
-  id: string,
-  eventId?: string | null,
-  restaurantId?: string | null,
-};
-
-export type DeleteEventRestaurantInput = {
-  id: string,
-};
-
-export type CreateOrderItemInput = {
-  id?: string | null,
-  orderId: string,
-  dishId: string,
-  quantity: number,
-};
-
-export type ModelOrderItemConditionInput = {
-  orderId?: ModelIDInput | null,
-  dishId?: ModelIDInput | null,
-  quantity?: ModelIntInput | null,
-  and?: Array< ModelOrderItemConditionInput | null > | null,
-  or?: Array< ModelOrderItemConditionInput | null > | null,
-  not?: ModelOrderItemConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type OrderItem = {
-  __typename: "OrderItem",
-  id?: string,
-  orderId?: string,
-  dishId?: string,
-  quantity?: number,
-  createdAt?: string,
-  updatedAt?: string,
-  dish?: Dish,
-  owner?: string | null,
-};
-
-export type UpdateOrderItemInput = {
-  id: string,
-  orderId?: string | null,
-  dishId?: string | null,
-  quantity?: number | null,
-};
-
-export type DeleteOrderItemInput = {
-  id: string,
-};
-
-export type CreateOrderInput = {
-  id?: string | null,
-  restaurantId: string,
-};
-
-export type ModelOrderConditionInput = {
-  restaurantId?: ModelIDInput | null,
-  and?: Array< ModelOrderConditionInput | null > | null,
-  or?: Array< ModelOrderConditionInput | null > | null,
-  not?: ModelOrderConditionInput | null,
-};
-
-export type Order = {
-  __typename: "Order",
-  id?: string,
-  restaurantId?: string,
-  items?: ModelOrderItemConnection,
-  createdAt?: string,
-  updatedAt?: string,
-  restaurant?: Restaurant,
-  owner?: string | null,
-};
-
-export type ModelOrderItemConnection = {
-  __typename: "ModelOrderItemConnection",
-  items?:  Array<OrderItem | null > | null,
-  nextToken?: string | null,
-};
-
-export type UpdateOrderInput = {
-  id: string,
-  restaurantId?: string | null,
-};
-
-export type DeleteOrderInput = {
   id: string,
 };
 
@@ -541,6 +517,30 @@ export type UpdateRestaurantInput = {
 };
 
 export type DeleteRestaurantInput = {
+  id: string,
+};
+
+export type CreateEventRestaurantInput = {
+  id?: string | null,
+  eventId: string,
+  restaurantId: string,
+};
+
+export type ModelEventRestaurantConditionInput = {
+  eventId?: ModelIDInput | null,
+  restaurantId?: ModelIDInput | null,
+  and?: Array< ModelEventRestaurantConditionInput | null > | null,
+  or?: Array< ModelEventRestaurantConditionInput | null > | null,
+  not?: ModelEventRestaurantConditionInput | null,
+};
+
+export type UpdateEventRestaurantInput = {
+  id: string,
+  eventId?: string | null,
+  restaurantId?: string | null,
+};
+
+export type DeleteEventRestaurantInput = {
   id: string,
 };
 
@@ -811,6 +811,297 @@ export type DeleteUserMutation = {
     avatarURI: string,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type CreateOrderItemMutationVariables = {
+  input?: CreateOrderItemInput,
+  condition?: ModelOrderItemConditionInput | null,
+};
+
+export type CreateOrderItemMutation = {
+  createOrderItem?:  {
+    __typename: "OrderItem",
+    id: string,
+    orderId: string,
+    dishId: string,
+    quantity: number,
+    createdAt: string,
+    updatedAt: string,
+    dish?:  {
+      __typename: "Dish",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      price: number,
+      ingredients?: Array< string | null > | null,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelDishMenuConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateOrderItemMutationVariables = {
+  input?: UpdateOrderItemInput,
+  condition?: ModelOrderItemConditionInput | null,
+};
+
+export type UpdateOrderItemMutation = {
+  updateOrderItem?:  {
+    __typename: "OrderItem",
+    id: string,
+    orderId: string,
+    dishId: string,
+    quantity: number,
+    createdAt: string,
+    updatedAt: string,
+    dish?:  {
+      __typename: "Dish",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      price: number,
+      ingredients?: Array< string | null > | null,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelDishMenuConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteOrderItemMutationVariables = {
+  input?: DeleteOrderItemInput,
+  condition?: ModelOrderItemConditionInput | null,
+};
+
+export type DeleteOrderItemMutation = {
+  deleteOrderItem?:  {
+    __typename: "OrderItem",
+    id: string,
+    orderId: string,
+    dishId: string,
+    quantity: number,
+    createdAt: string,
+    updatedAt: string,
+    dish?:  {
+      __typename: "Dish",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      price: number,
+      ingredients?: Array< string | null > | null,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelDishMenuConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateOrderMutationVariables = {
+  input?: CreateOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type CreateOrderMutation = {
+  createOrder?:  {
+    __typename: "Order",
+    id: string,
+    restaurantId: string,
+    items?:  {
+      __typename: "ModelOrderItemConnection",
+      items?:  Array< {
+        __typename: "OrderItem",
+        id: string,
+        orderId: string,
+        dishId: string,
+        quantity: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    restaurant?:  {
+      __typename: "Restaurant",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      address: string,
+      location: Array< number | null >,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      operatingHours: Array< string | null >,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelMenuConnection",
+        nextToken?: string | null,
+      } | null,
+      events?:  {
+        __typename: "ModelEventRestaurantConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateOrderMutationVariables = {
+  input?: UpdateOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type UpdateOrderMutation = {
+  updateOrder?:  {
+    __typename: "Order",
+    id: string,
+    restaurantId: string,
+    items?:  {
+      __typename: "ModelOrderItemConnection",
+      items?:  Array< {
+        __typename: "OrderItem",
+        id: string,
+        orderId: string,
+        dishId: string,
+        quantity: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    restaurant?:  {
+      __typename: "Restaurant",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      address: string,
+      location: Array< number | null >,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      operatingHours: Array< string | null >,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelMenuConnection",
+        nextToken?: string | null,
+      } | null,
+      events?:  {
+        __typename: "ModelEventRestaurantConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteOrderMutationVariables = {
+  input?: DeleteOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type DeleteOrderMutation = {
+  deleteOrder?:  {
+    __typename: "Order",
+    id: string,
+    restaurantId: string,
+    items?:  {
+      __typename: "ModelOrderItemConnection",
+      items?:  Array< {
+        __typename: "OrderItem",
+        id: string,
+        orderId: string,
+        dishId: string,
+        quantity: number,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    restaurant?:  {
+      __typename: "Restaurant",
+      id: string,
+      name: string,
+      description: string,
+      stars: number,
+      address: string,
+      location: Array< number | null >,
+      imageURI: string,
+      mediumImageURI: string,
+      thumbnailImageURI: string,
+      operatingHours: Array< string | null >,
+      createdAt: string,
+      updatedAt: string,
+      reviews?:  {
+        __typename: "ModelReviewConnection",
+        nextToken?: string | null,
+      } | null,
+      menus?:  {
+        __typename: "ModelMenuConnection",
+        nextToken?: string | null,
+      } | null,
+      events?:  {
+        __typename: "ModelEventRestaurantConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1384,6 +1675,198 @@ export type DeleteEventMutation = {
   } | null,
 };
 
+export type CreateRestaurantMutationVariables = {
+  input?: CreateRestaurantInput,
+  condition?: ModelRestaurantConditionInput | null,
+};
+
+export type CreateRestaurantMutation = {
+  createRestaurant?:  {
+    __typename: "Restaurant",
+    id: string,
+    name: string,
+    description: string,
+    stars: number,
+    address: string,
+    location: Array< number | null >,
+    imageURI: string,
+    mediumImageURI: string,
+    thumbnailImageURI: string,
+    operatingHours: Array< string | null >,
+    createdAt: string,
+    updatedAt: string,
+    reviews?:  {
+      __typename: "ModelReviewConnection",
+      items?:  Array< {
+        __typename: "Review",
+        id: string,
+        dishId: string,
+        restaurantId: string,
+        title: string,
+        stars: number,
+        content: string,
+        reviewerId: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    menus?:  {
+      __typename: "ModelMenuConnection",
+      items?:  Array< {
+        __typename: "Menu",
+        id: string,
+        restaurantId: string,
+        type: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    events?:  {
+      __typename: "ModelEventRestaurantConnection",
+      items?:  Array< {
+        __typename: "EventRestaurant",
+        id: string,
+        eventId: string,
+        restaurantId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+  } | null,
+};
+
+export type UpdateRestaurantMutationVariables = {
+  input?: UpdateRestaurantInput,
+  condition?: ModelRestaurantConditionInput | null,
+};
+
+export type UpdateRestaurantMutation = {
+  updateRestaurant?:  {
+    __typename: "Restaurant",
+    id: string,
+    name: string,
+    description: string,
+    stars: number,
+    address: string,
+    location: Array< number | null >,
+    imageURI: string,
+    mediumImageURI: string,
+    thumbnailImageURI: string,
+    operatingHours: Array< string | null >,
+    createdAt: string,
+    updatedAt: string,
+    reviews?:  {
+      __typename: "ModelReviewConnection",
+      items?:  Array< {
+        __typename: "Review",
+        id: string,
+        dishId: string,
+        restaurantId: string,
+        title: string,
+        stars: number,
+        content: string,
+        reviewerId: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    menus?:  {
+      __typename: "ModelMenuConnection",
+      items?:  Array< {
+        __typename: "Menu",
+        id: string,
+        restaurantId: string,
+        type: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    events?:  {
+      __typename: "ModelEventRestaurantConnection",
+      items?:  Array< {
+        __typename: "EventRestaurant",
+        id: string,
+        eventId: string,
+        restaurantId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+  } | null,
+};
+
+export type DeleteRestaurantMutationVariables = {
+  input?: DeleteRestaurantInput,
+  condition?: ModelRestaurantConditionInput | null,
+};
+
+export type DeleteRestaurantMutation = {
+  deleteRestaurant?:  {
+    __typename: "Restaurant",
+    id: string,
+    name: string,
+    description: string,
+    stars: number,
+    address: string,
+    location: Array< number | null >,
+    imageURI: string,
+    mediumImageURI: string,
+    thumbnailImageURI: string,
+    operatingHours: Array< string | null >,
+    createdAt: string,
+    updatedAt: string,
+    reviews?:  {
+      __typename: "ModelReviewConnection",
+      items?:  Array< {
+        __typename: "Review",
+        id: string,
+        dishId: string,
+        restaurantId: string,
+        title: string,
+        stars: number,
+        content: string,
+        reviewerId: string,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    menus?:  {
+      __typename: "ModelMenuConnection",
+      items?:  Array< {
+        __typename: "Menu",
+        id: string,
+        restaurantId: string,
+        type: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+    events?:  {
+      __typename: "ModelEventRestaurantConnection",
+      items?:  Array< {
+        __typename: "EventRestaurant",
+        id: string,
+        eventId: string,
+        restaurantId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
+  } | null,
+};
+
 export type CreateEventRestaurantMutationVariables = {
   input?: CreateEventRestaurantInput,
   condition?: ModelEventRestaurantConditionInput | null,
@@ -1575,489 +2058,6 @@ export type DeleteEventRestaurantMutation = {
         __typename: "ModelEventRestaurantConnection",
         nextToken?: string | null,
       } | null,
-    } | null,
-  } | null,
-};
-
-export type CreateOrderItemMutationVariables = {
-  input?: CreateOrderItemInput,
-  condition?: ModelOrderItemConditionInput | null,
-};
-
-export type CreateOrderItemMutation = {
-  createOrderItem?:  {
-    __typename: "OrderItem",
-    id: string,
-    orderId: string,
-    dishId: string,
-    quantity: number,
-    createdAt: string,
-    updatedAt: string,
-    dish?:  {
-      __typename: "Dish",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      price: number,
-      ingredients?: Array< string | null > | null,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelDishMenuConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type UpdateOrderItemMutationVariables = {
-  input?: UpdateOrderItemInput,
-  condition?: ModelOrderItemConditionInput | null,
-};
-
-export type UpdateOrderItemMutation = {
-  updateOrderItem?:  {
-    __typename: "OrderItem",
-    id: string,
-    orderId: string,
-    dishId: string,
-    quantity: number,
-    createdAt: string,
-    updatedAt: string,
-    dish?:  {
-      __typename: "Dish",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      price: number,
-      ingredients?: Array< string | null > | null,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelDishMenuConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type DeleteOrderItemMutationVariables = {
-  input?: DeleteOrderItemInput,
-  condition?: ModelOrderItemConditionInput | null,
-};
-
-export type DeleteOrderItemMutation = {
-  deleteOrderItem?:  {
-    __typename: "OrderItem",
-    id: string,
-    orderId: string,
-    dishId: string,
-    quantity: number,
-    createdAt: string,
-    updatedAt: string,
-    dish?:  {
-      __typename: "Dish",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      price: number,
-      ingredients?: Array< string | null > | null,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelDishMenuConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type CreateOrderMutationVariables = {
-  input?: CreateOrderInput,
-  condition?: ModelOrderConditionInput | null,
-};
-
-export type CreateOrderMutation = {
-  createOrder?:  {
-    __typename: "Order",
-    id: string,
-    restaurantId: string,
-    items?:  {
-      __typename: "ModelOrderItemConnection",
-      items?:  Array< {
-        __typename: "OrderItem",
-        id: string,
-        orderId: string,
-        dishId: string,
-        quantity: number,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      address: string,
-      location: Array< number | null >,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      operatingHours: Array< string | null >,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelMenuConnection",
-        nextToken?: string | null,
-      } | null,
-      events?:  {
-        __typename: "ModelEventRestaurantConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type UpdateOrderMutationVariables = {
-  input?: UpdateOrderInput,
-  condition?: ModelOrderConditionInput | null,
-};
-
-export type UpdateOrderMutation = {
-  updateOrder?:  {
-    __typename: "Order",
-    id: string,
-    restaurantId: string,
-    items?:  {
-      __typename: "ModelOrderItemConnection",
-      items?:  Array< {
-        __typename: "OrderItem",
-        id: string,
-        orderId: string,
-        dishId: string,
-        quantity: number,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      address: string,
-      location: Array< number | null >,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      operatingHours: Array< string | null >,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelMenuConnection",
-        nextToken?: string | null,
-      } | null,
-      events?:  {
-        __typename: "ModelEventRestaurantConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type DeleteOrderMutationVariables = {
-  input?: DeleteOrderInput,
-  condition?: ModelOrderConditionInput | null,
-};
-
-export type DeleteOrderMutation = {
-  deleteOrder?:  {
-    __typename: "Order",
-    id: string,
-    restaurantId: string,
-    items?:  {
-      __typename: "ModelOrderItemConnection",
-      items?:  Array< {
-        __typename: "OrderItem",
-        id: string,
-        orderId: string,
-        dishId: string,
-        quantity: number,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      description: string,
-      stars: number,
-      address: string,
-      location: Array< number | null >,
-      imageURI: string,
-      mediumImageURI: string,
-      thumbnailImageURI: string,
-      operatingHours: Array< string | null >,
-      createdAt: string,
-      updatedAt: string,
-      reviews?:  {
-        __typename: "ModelReviewConnection",
-        nextToken?: string | null,
-      } | null,
-      menus?:  {
-        __typename: "ModelMenuConnection",
-        nextToken?: string | null,
-      } | null,
-      events?:  {
-        __typename: "ModelEventRestaurantConnection",
-        nextToken?: string | null,
-      } | null,
-    } | null,
-    owner?: string | null,
-  } | null,
-};
-
-export type CreateRestaurantMutationVariables = {
-  input?: CreateRestaurantInput,
-  condition?: ModelRestaurantConditionInput | null,
-};
-
-export type CreateRestaurantMutation = {
-  createRestaurant?:  {
-    __typename: "Restaurant",
-    id: string,
-    name: string,
-    description: string,
-    stars: number,
-    address: string,
-    location: Array< number | null >,
-    imageURI: string,
-    mediumImageURI: string,
-    thumbnailImageURI: string,
-    operatingHours: Array< string | null >,
-    createdAt: string,
-    updatedAt: string,
-    reviews?:  {
-      __typename: "ModelReviewConnection",
-      items?:  Array< {
-        __typename: "Review",
-        id: string,
-        dishId: string,
-        restaurantId: string,
-        title: string,
-        stars: number,
-        content: string,
-        reviewerId: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    menus?:  {
-      __typename: "ModelMenuConnection",
-      items?:  Array< {
-        __typename: "Menu",
-        id: string,
-        restaurantId: string,
-        type: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    events?:  {
-      __typename: "ModelEventRestaurantConnection",
-      items?:  Array< {
-        __typename: "EventRestaurant",
-        id: string,
-        eventId: string,
-        restaurantId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateRestaurantMutationVariables = {
-  input?: UpdateRestaurantInput,
-  condition?: ModelRestaurantConditionInput | null,
-};
-
-export type UpdateRestaurantMutation = {
-  updateRestaurant?:  {
-    __typename: "Restaurant",
-    id: string,
-    name: string,
-    description: string,
-    stars: number,
-    address: string,
-    location: Array< number | null >,
-    imageURI: string,
-    mediumImageURI: string,
-    thumbnailImageURI: string,
-    operatingHours: Array< string | null >,
-    createdAt: string,
-    updatedAt: string,
-    reviews?:  {
-      __typename: "ModelReviewConnection",
-      items?:  Array< {
-        __typename: "Review",
-        id: string,
-        dishId: string,
-        restaurantId: string,
-        title: string,
-        stars: number,
-        content: string,
-        reviewerId: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    menus?:  {
-      __typename: "ModelMenuConnection",
-      items?:  Array< {
-        __typename: "Menu",
-        id: string,
-        restaurantId: string,
-        type: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    events?:  {
-      __typename: "ModelEventRestaurantConnection",
-      items?:  Array< {
-        __typename: "EventRestaurant",
-        id: string,
-        eventId: string,
-        restaurantId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteRestaurantMutationVariables = {
-  input?: DeleteRestaurantInput,
-  condition?: ModelRestaurantConditionInput | null,
-};
-
-export type DeleteRestaurantMutation = {
-  deleteRestaurant?:  {
-    __typename: "Restaurant",
-    id: string,
-    name: string,
-    description: string,
-    stars: number,
-    address: string,
-    location: Array< number | null >,
-    imageURI: string,
-    mediumImageURI: string,
-    thumbnailImageURI: string,
-    operatingHours: Array< string | null >,
-    createdAt: string,
-    updatedAt: string,
-    reviews?:  {
-      __typename: "ModelReviewConnection",
-      items?:  Array< {
-        __typename: "Review",
-        id: string,
-        dishId: string,
-        restaurantId: string,
-        title: string,
-        stars: number,
-        content: string,
-        reviewerId: string,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    menus?:  {
-      __typename: "ModelMenuConnection",
-      items?:  Array< {
-        __typename: "Menu",
-        id: string,
-        restaurantId: string,
-        type: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
-    } | null,
-    events?:  {
-      __typename: "ModelEventRestaurantConnection",
-      items?:  Array< {
-        __typename: "EventRestaurant",
-        id: string,
-        eventId: string,
-        restaurantId: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null > | null,
-      nextToken?: string | null,
     } | null,
   } | null,
 };

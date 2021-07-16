@@ -18,7 +18,7 @@
       "function": {
         "syncrestaurants": {
           "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
-          "s3Key": "amplify-builds/syncrestaurants-554e4c3148312f487172-build.zip"
+          "s3Key": "amplify-builds/syncrestaurants-596e58706b4b32467951-build.zip"
         },
         "milkylaneapilayer": {
           "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
