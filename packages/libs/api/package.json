@@ -1,6 +1,6 @@
 {
   "name": "@milkylane/api",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -10,8 +10,8 @@
     "clean": "rimraf dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
-    "@milkylane/graphql": "^0.0.9",
-    "@milkylane/model": "^0.0.9",
+    "@milkylane/graphql": "^0.0.10",
+    "@milkylane/model": "^0.0.10",
     "aws-amplify": "^4.1.3",
     "moment": "^2.29.1"
   },
