@@ -2,6 +2,9 @@
   "name": "@milkylane/api-shared",
   "version": "0.0.9",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
     "clean": "rimraf dist ",

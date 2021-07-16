@@ -30,6 +30,7 @@ type Review
   @auth(
     rules: [
       { allow: owner }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   )
@@ -50,6 +51,7 @@ type Dish
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   ) {
@@ -71,6 +73,7 @@ type Menu
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   )
@@ -86,6 +89,7 @@ type DishMenu
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   )
@@ -103,6 +107,7 @@ type Event
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   ) {
@@ -148,6 +153,7 @@ type EventRestaurant
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
       { allow: public, operations: [read], provider: apiKey }
     ]
   )

@@ -17,9 +17,9 @@ export const handler: APIGatewayProxyHandlerV2 = async event => {
         stars: 5,
         location: [-38.5902263, -3.7271887],
         operatingHours: [
-          { open: '17:00', close: '00:00', day: 'monday' },
-          { open: '17:00', close: '00:00', day: 'tuesday' },
-          { open: '17:00', close: '00:00', day: 'friday' },
+          JSON.stringify({ open: '17:00', close: '00:00', day: 'monday' }),
+          JSON.stringify({ open: '17:00', close: '00:00', day: 'tuesday' }),
+          JSON.stringify({ open: '17:00', close: '00:00', day: 'friday' }),
         ],
         description:
           'The best option for those that are looking for something healthy to put on their mouths.',

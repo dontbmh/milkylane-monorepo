@@ -7,7 +7,7 @@
     "build:libs": "lerna run build --scope=@milkylane/* --stream",
     "build": "npm run build:libs && npm run build:funcs",
     "bootstrap": "npm run aws:ca && lerna bootstrap",
-    "publish": "npm run aws:ca && lerna publish"
+    "pub": "npm run aws:ca && lerna publish"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
