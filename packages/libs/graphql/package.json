@@ -1,6 +1,6 @@
 {
   "name": "@milkylane/graphql",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -12,5 +12,6 @@
   "devDependencies": {
     "rimraf": "^3.0.2",
     "typescript": "^4.3.5"
-  }
+  },
+  "gitHead": "f0b1579bbeb5075ba7752c3c4897f4b3c061803e"
 }

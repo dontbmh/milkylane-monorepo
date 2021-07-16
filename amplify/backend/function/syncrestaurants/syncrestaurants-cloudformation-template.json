@@ -1,434 +1,236 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
-  "Parameters": {
-    "CloudWatchRule": {
-      "Type": "String",
-      "Default": "NONE",
-      "Description": " Schedule Expression"
-    },
-    "deploymentBucketName": {
-      "Type": "String"
-    },
-    "env": {
-      "Type": "String"
-    },
-    "s3Key": {
-      "Type": "String"
-    },
-    "apimilkylaneGraphQLAPIIdOutput": {
-      "Type": "String",
-      "Default": "apimilkylaneGraphQLAPIIdOutput"
-    },
-    "apimilkylaneGraphQLAPIEndpointOutput": {
-      "Type": "String",
-      "Default": "apimilkylaneGraphQLAPIEndpointOutput"
-    },
-    "apimilkylaneGraphQLAPIKeyOutput": {
-      "Type": "String",
-      "Default": "apimilkylaneGraphQLAPIKeyOutput"
-    },
-    "functionmilkylaneapisharedArn": {
-      "Type": "String",
-      "Default": "functionmilkylaneapisharedArn"
-    }
-  },
-  "Conditions": {
-    "ShouldNotCreateEnvResources": {
-      "Fn::Equals": [
-        {
-          "Ref": "env"
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Lambda Function resource stack creation using Amplify CLI",
+    "Parameters": {
+        "CloudWatchRule": {
+            "Type": "String",
+            "Default" : "NONE",
+            "Description" : " Schedule Expression"
         },
-        "NONE"
-      ]
-    }
-  },
-  "Resources": {
-    "LambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Metadata": {
-        "aws:asset:path": "./src",
-        "aws:asset:property": "Code"
-      },
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "deploymentBucketName"
-          },
-          "S3Key": {
-            "Ref": "s3Key"
-          }
+        "deploymentBucketName": {
+            "Type": "String"
         },
-        "Handler": "index.handler",
-        "FunctionName": {
-          "Fn::If": [
-            "ShouldNotCreateEnvResources",
-            "syncrestaurants",
-            {
-              "Fn::Join": [
-                "",
-                [
-                  "syncrestaurants",
-                  "-",
-                  {
-                    "Ref": "env"
-                  }
-                ]
-              ]
-            }
-          ]
+        "env": {
+            "Type": "String"
         },
-        "Environment": {
-          "Variables": {
-            "ENV": {
-              "Ref": "env"
-            },
-            "REGION": {
-              "Ref": "AWS::Region"
-            },
-            "API_MILKYLANE_GRAPHQLAPIIDOUTPUT": {
-              "Ref": "apimilkylaneGraphQLAPIIdOutput"
-            },
-            "API_MILKYLANE_GRAPHQLAPIENDPOINTOUTPUT": {
-              "Ref": "apimilkylaneGraphQLAPIEndpointOutput"
-            },
-            "API_MILKYLANE_GRAPHQLAPIKEYOUTPUT": {
-              "Ref": "apimilkylaneGraphQLAPIKeyOutput"
-            },
-            "lightspeed_client_id": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Fn::Sub": [
-                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
-                      {
-                        "appId": "d3ngo5i41qfjdi",
-                        "env": {
-                          "Ref": "env"
-                        },
-                        "functionName": "syncrestaurants"
-                      }
-                    ]
-                  },
-                  "lightspeed_client_id"
-                ]
-              ]
-            },
-            "lightspeed_client_secret": {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Fn::Sub": [
-                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
-                      {
-                        "appId": "d3ngo5i41qfjdi",
-                        "env": {
-                          "Ref": "env"
-                        },
-                        "functionName": "syncrestaurants"
-                      }
-                    ]
-                  },
-                  "lightspeed_client_secret"
-                ]
-              ]
-            }
-          }
-        },
-        "Role": {
-          "Fn::GetAtt": [
-            "LambdaExecutionRole",
-            "Arn"
-          ]
-        },
-        "Runtime": "nodejs14.x",
-        "Layers": [
-          {
-            "Ref": "functionmilkylaneapisharedArn"
-          }
-        ],
-        "Timeout": "25"
-      }
-    },
-    "LambdaExecutionRole": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "RoleName": {
-          "Fn::If": [
-            "ShouldNotCreateEnvResources",
-            "milkylaneLambdaRole3799d9a0",
-            {
-              "Fn::Join": [
-                "",
-                [
-                  "milkylaneLambdaRole3799d9a0",
-                  "-",
-                  {
-                    "Ref": "env"
-                  }
-                ]
-              ]
-            }
-          ]
-        },
-        "AssumeRolePolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                "Service": [
-                  "lambda.amazonaws.com"
-                ]
-              },
-              "Action": [
-                "sts:AssumeRole"
-              ]
-            }
-          ]
+        "s3Key": {
+            "Type": "String"
         }
-      }
-    },
-    "lambdaexecutionpolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Resource": {
-                "Fn::Sub": [
-                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
-                  {
-                    "region": {
-                      "Ref": "AWS::Region"
-                    },
-                    "account": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "lambda": {
-                      "Ref": "LambdaFunction"
-                    }
-                  }
-                ]
-              }
+        ,
+    
+    
+    
+        "apimilkylaneGraphQLAPIIdOutput": {
+            "Type": "String",
+            "Default": "apimilkylaneGraphQLAPIIdOutput"
+            },
+        
+        "apimilkylaneGraphQLAPIEndpointOutput": {
+            "Type": "String",
+            "Default": "apimilkylaneGraphQLAPIEndpointOutput"
+            },
+        
+        "apimilkylaneGraphQLAPIKeyOutput": {
+            "Type": "String",
+            "Default": "apimilkylaneGraphQLAPIKeyOutput"
+            },
+        
+    
+        
+    
+        "functionmilkylaneapilayerArn": {
+            "Type": "String",
+            "Default": "functionmilkylaneapilayerArn"
             }
-          ]
-        }
-      }
+        
+    
+        
+    
     },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "appsync:Create*",
-                "appsync:StartSchemaCreation",
-                "appsync:GraphQL",
-                "appsync:Get*",
-                "appsync:List*",
-                "appsync:Update*",
-                "appsync:Delete*"
-              ],
-              "Resource": [
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
                 {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:appsync:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":apis/",
-                      {
-                        "Ref": "apimilkylaneGraphQLAPIIdOutput"
-                      },
-                      "/*"
-                    ]
-                  ]
+                    "Ref": "env"
                 },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:appsync:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":apis/",
-                      {
-                        "Ref": "apimilkylaneGraphQLAPIIdOutput"
-                      }
-                    ]
-                  ]
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+        "LambdaFunction": {
+          "Type": "AWS::Lambda::Function",
+          "Metadata": {
+            "aws:asset:path": "./src",
+            "aws:asset:property": "Code"
+          },
+          "Properties": {
+            "Code": {
+                "S3Bucket": {
+                    "Ref": "deploymentBucketName"
+                },
+                "S3Key": {
+                    "Ref": "s3Key"
                 }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "CloudWatchEvent": {
-      "Type": "AWS::Events::Rule",
-      "Properties": {
-        "Description": "Schedule rule for Lambda",
-        "ScheduleExpression": {
-          "Ref": "CloudWatchRule"
-        },
-        "State": "ENABLED",
-        "Targets": [
-          {
-            "Arn": {
-              "Fn::GetAtt": [
-                "LambdaFunction",
-                "Arn"
-              ]
             },
-            "Id": {
-              "Ref": "LambdaFunction"
-            }
-          }
-        ]
-      }
-    },
-    "PermissionForEventsToInvokeLambda": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunction"
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "events.amazonaws.com",
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "CloudWatchEvent",
-            "Arn"
-          ]
-        }
-      }
-    },
-    "AmplifyFunctionSecretsPolicy": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-function-secrets-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "ssm:GetParameter",
-                "ssm:GetParameters"
-              ],
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:aws:ssm:",
+            "Handler": "index.handler",
+            "FunctionName": {
+                "Fn::If": [
+                    "ShouldNotCreateEnvResources",
+                    "syncrestaurants",
                     {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":parameter",
-                    {
-                      "Fn::Sub": [
-                        "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
-                        {
-                          "appId": "d3ngo5i41qfjdi",
-                          "env": {
-                            "Ref": "env"
-                          },
-                          "functionName": "syncrestaurants"
-                        }
-                      ]
-                    },
-                    "*"
-                  ]
+
+                        "Fn::Join": [
+                            "",
+                            [
+                                "syncrestaurants",
+                                "-",
+                                {
+                                    "Ref": "env"
+                                }
+                            ]
+                        ]
+                    }
                 ]
-              }
+            },
+            "Environment": {
+                "Variables" : {"ENV":{"Ref":"env"},"REGION":{"Ref":"AWS::Region"},"API_MILKYLANE_GRAPHQLAPIIDOUTPUT":{"Ref":"apimilkylaneGraphQLAPIIdOutput"},"API_MILKYLANE_GRAPHQLAPIENDPOINTOUTPUT":{"Ref":"apimilkylaneGraphQLAPIEndpointOutput"},"API_MILKYLANE_GRAPHQLAPIKEYOUTPUT":{"Ref":"apimilkylaneGraphQLAPIKeyOutput"}}
+            },
+            "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
+            "Runtime": "nodejs14.x",
+            "Layers": [{"Ref":"functionmilkylaneapilayerArn"}],
+            "Timeout": "25"
+          }
+        },
+        "LambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "milkylaneLambdaRole87136b8b",
+                        {
+
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "milkylaneLambdaRole87136b8b",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                }
             }
-          ]
         }
-      },
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ]
+        ,"lambdaexecutionpolicy": {
+            "DependsOn": ["LambdaExecutionRole"],
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "lambda-execution-policy",
+                "Roles": [{ "Ref": "LambdaExecutionRole" }],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": ["logs:CreateLogGroup",
+                            "logs:CreateLogStream",
+                            "logs:PutLogEvents"],
+                            "Resource": { "Fn::Sub": [ "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*", { "region": {"Ref": "AWS::Region"}, "account": {"Ref": "AWS::AccountId"}, "lambda": {"Ref": "LambdaFunction"}} ]}
+                        }
+                    ]
+                }
+            }
+        }
+        ,"AmplifyResourcesPolicy": {
+            "DependsOn": ["LambdaExecutionRole"],
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "amplify-lambda-execution-policy",
+                "Roles": [{ "Ref": "LambdaExecutionRole" }],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{"Effect":"Allow","Action":["appsync:Create*","appsync:StartSchemaCreation","appsync:GraphQL","appsync:Get*","appsync:List*","appsync:Update*","appsync:Delete*"],"Resource":[{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apimilkylaneGraphQLAPIIdOutput"},"/*"]]},{"Fn::Join":["",["arn:aws:appsync:",{"Ref":"AWS::Region"},":",{"Ref":"AWS::AccountId"},":apis/",{"Ref":"apimilkylaneGraphQLAPIIdOutput"}]]}]}]
+                }
+            }
+        }
+        
+        
+        
+        ,"CloudWatchEvent": {
+            "Type": "AWS::Events::Rule",
+            "Properties": {
+                "Description": "Schedule rule for Lambda",
+                "ScheduleExpression": {
+                    "Ref": "CloudWatchRule"
+                },
+                "State": "ENABLED",
+                "Targets": [{
+                    "Arn": { "Fn::GetAtt": ["LambdaFunction", "Arn"] },
+                    "Id": {
+                        "Ref": "LambdaFunction"
+                    }
+                }]
+            }
+        }
+        ,"PermissionForEventsToInvokeLambda": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "FunctionName": {
+                    "Ref": "LambdaFunction"
+                    },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "events.amazonaws.com",
+                "SourceArn": { "Fn::GetAtt": ["CloudWatchEvent", "Arn"] }
+            }
+        }
+        
+    },
+    "Outputs": {
+        "Name": {
+            "Value": {
+                "Ref": "LambdaFunction"
+            }
+        },
+        "Arn": {
+            "Value": {"Fn::GetAtt": ["LambdaFunction", "Arn"]}
+        },
+        "Region": {
+            "Value": {
+                "Ref": "AWS::Region"
+            }
+        },
+        "LambdaExecutionRole": {
+            "Value": {
+                "Ref": "LambdaExecutionRole"
+            }
+        }
+        
+        ,"CloudWatchEventRule": {
+            "Value": {
+                "Ref": "CloudWatchEvent"
+            }
+        }
+        
     }
-  },
-  "Outputs": {
-    "Name": {
-      "Value": {
-        "Ref": "LambdaFunction"
-      }
-    },
-    "Arn": {
-      "Value": {
-        "Fn::GetAtt": [
-          "LambdaFunction",
-          "Arn"
-        ]
-      }
-    },
-    "Region": {
-      "Value": {
-        "Ref": "AWS::Region"
-      }
-    },
-    "LambdaExecutionRole": {
-      "Value": {
-        "Ref": "LambdaExecutionRole"
-      }
-    },
-    "CloudWatchEventRule": {
-      "Value": {
-        "Ref": "CloudWatchEvent"
-      }
-    }
-  }
 }

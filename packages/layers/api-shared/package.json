@@ -1,0 +1,21 @@
+{
+  "name": "@milkylane/api-shared",
+  "version": "0.0.8",
+  "main": "dist/index.js",
+  "scripts": {
+    "tsc": "./node_modules/.bin/tsc",
+    "clean": "rimraf dist ",
+    "build": "npm run clean && npm run tsc"
+  },
+  "dependencies": {
+    "@milkylane/graphql": "^0.0.8"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.79",
+    "@types/node": "^16.3.2",
+    "aws-sdk": "^2.947.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.5"
+  },
+  "gitHead": "f0b1579bbeb5075ba7752c3c4897f4b3c061803e"
+}

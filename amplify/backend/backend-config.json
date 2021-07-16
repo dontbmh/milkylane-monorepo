@@ -36,7 +36,7 @@
     }
   },
   "function": {
-    "milkylaneapishared": {
+    "milkylaneapilayer": {
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer",
       "build": true
@@ -57,7 +57,7 @@
         },
         {
           "category": "function",
-          "resourceName": "milkylaneapishared",
+          "resourceName": "milkylaneapilayer",
           "attributes": [
             "Arn"
           ]

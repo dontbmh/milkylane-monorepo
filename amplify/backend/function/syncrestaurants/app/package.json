@@ -1,6 +1,7 @@
 {
   "name": "@function/sync-restaurants",
-  "version": "2.0.0",
+  "version": "0.0.8",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b",

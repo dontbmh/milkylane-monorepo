@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersion155422a1": {
+    "LambdaLayerVersioneaa119cb": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": {
@@ -39,7 +39,7 @@
         },
         "LayerName": {
           "Fn::Sub": [
-            "milkylaneapishared-${env}",
+            "milkylaneapilayer-${env}",
             {
               "env": {
                 "Ref": "env"
@@ -51,12 +51,12 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPublic155422a1": {
+    "LambdaLayerPermissionPubliceaa119cb": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
-          "Ref": "LambdaLayerVersion155422a1"
+          "Ref": "LambdaLayerVersioneaa119cb"
         },
         "Principal": "*"
       }
@@ -65,7 +65,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersion155422a1"
+        "Ref": "LambdaLayerVersioneaa119cb"
       }
     }
   }

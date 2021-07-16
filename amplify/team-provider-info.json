@@ -16,13 +16,9 @@
         "milkylane72259ea7": {}
       },
       "function": {
-        "syncrestaurants": {
+        "milkylaneapilayer": {
           "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
-          "s3Key": "amplify-builds/syncrestaurants-48743251697a774b465a-build.zip"
-        },
-        "milkylaneapishared": {
-          "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
-          "s3Key": "amplify-builds/milkylaneapishared-LambdaLayerVersion155422a1-build.zip"
+          "s3Key": "amplify-builds/milkylaneapilayer-LambdaLayerVersioneaa119cb-build.zip"
         }
       }
     }

@@ -1,8 +1,10 @@
 {
-  "name": "@milkylane/function",
-  "version": "0.0.4",
+  "name": "@function/base",
+  "version": "0.0.8",
   "private": true,
   "devDependencies": {
+    "@milkylane/api-shared": "^0.0.8",
+    "@milkylane/graphql": "^0.0.8",
     "@types/aws-lambda": "^8.10.78",
     "@types/node": "^16.3.2",
     "aws-sdk": "^2.7.0",
