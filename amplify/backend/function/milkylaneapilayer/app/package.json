@@ -1,6 +1,6 @@
 {
   "name": "@function/api-layer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,6 @@
     "build": "npm run clean && npm run tsc"
   },
   "dependencies": {
-    "@milkylane/api-shared": "^0.0.8"
+    "@milkylane/api-shared": "^0.0.9"
   }
 }

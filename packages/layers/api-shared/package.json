@@ -1,6 +1,6 @@
 {
   "name": "@milkylane/api-shared",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run tsc"
   },
   "dependencies": {
-    "@milkylane/graphql": "^0.0.8"
+    "@milkylane/graphql": "^0.0.9"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.79",
