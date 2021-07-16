@@ -1,0 +1,14 @@
+{
+  "name": "@function/api-layer",
+  "version": "0.0.8",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b",
+    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../src ",
+    "build": "npm run clean && npm run tsc"
+  },
+  "dependencies": {
+    "@milkylane/api-shared": "^0.0.8"
+  }
+}
