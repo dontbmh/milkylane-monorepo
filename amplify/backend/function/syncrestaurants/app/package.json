@@ -4,8 +4,6 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b",
-    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../src ",
-    "build": "npm run clean && npm run tsc"
+    "build": "node ../../rebuild.js"
   }
 }
