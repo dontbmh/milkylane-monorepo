@@ -2,9 +2,10 @@
   "permissions": {
     "api": {
       "milkylane": [
-        "Query",
-        "Mutation",
-        "Subscription"
+        "create",
+        "read",
+        "update",
+        "delete"
       ]
     }
   },
@@ -12,9 +13,9 @@
     {
       "type": "ProjectLayer",
       "resourceName": "milkylaneapishared",
+      "env": "dev",
       "version": "Always choose latest version",
-      "isLatestVersionSelected": true,
-      "env": "dev"
+      "isLatestVersionSelected": true
     }
   ],
   "secretNames": [

@@ -1,28 +1,28 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-milkylane-dev-141917-authRole",
-      "UnauthRoleArn": "arn:aws:iam::523360775273:role/amplify-milkylane-dev-141917-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::523360775273:role/amplify-milkylane-dev-141917-authRole",
+      "AuthRoleName": "amplify-milkylane-dev-110132-authRole",
+      "UnauthRoleArn": "arn:aws:iam::523360775273:role/amplify-milkylane-dev-110132-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::523360775273:role/amplify-milkylane-dev-110132-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-milkylane-dev-141917-deployment",
-      "UnauthRoleName": "amplify-milkylane-dev-141917-unauthRole",
-      "StackName": "amplify-milkylane-dev-141917",
-      "StackId": "arn:aws:cloudformation:us-east-1:523360775273:stack/amplify-milkylane-dev-141917/444d8430-e3a2-11eb-8b58-12be25e2835f",
-      "AmplifyAppId": "d1dvrm10p3hotb"
+      "DeploymentBucketName": "amplify-milkylane-dev-110132-deployment",
+      "UnauthRoleName": "amplify-milkylane-dev-110132-unauthRole",
+      "StackName": "amplify-milkylane-dev-110132",
+      "StackId": "arn:aws:cloudformation:us-east-1:523360775273:stack/amplify-milkylane-dev-110132/21568520-e5e2-11eb-a26d-0e715b49d7c1",
+      "AmplifyAppId": "d3ngo5i41qfjdi"
     },
     "categories": {
       "auth": {
-        "milkylane32e6a0a9": {}
+        "milkylane72259ea7": {}
       },
       "function": {
         "syncrestaurants": {
-          "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
-          "s3Key": "amplify-builds/syncrestaurants-3267707a47632b363174-build.zip"
+          "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
+          "s3Key": "amplify-builds/syncrestaurants-48743251697a774b465a-build.zip"
         },
         "milkylaneapishared": {
-          "deploymentBucketName": "amplify-milkylane-dev-141917-deployment",
-          "s3Key": "amplify-builds/milkylaneapishared-LambdaLayerVersion2d4168a3-build.zip"
+          "deploymentBucketName": "amplify-milkylane-dev-110132-deployment",
+          "s3Key": "amplify-builds/milkylaneapishared-LambdaLayerVersion155422a1-build.zip"
         }
       }
     }

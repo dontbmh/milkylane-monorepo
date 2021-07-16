@@ -187,8 +187,8 @@ type Query {
     limit: Int
     nextToken: String
   ): RestaurantConnection @aws_api_key
-  lsAuth(appId: String, secret: String): AWSJSON
-    @function(name: "lsauth-${env}")
+  syncRestaurants(filter: [String]): AWSJSON
+    @function(name: "syncrestaurants-${env}")
     @aws_api_key
 }
 

@@ -1,13 +1,10 @@
 {
-  "name": "@milkylane/function-sync-restaurants",
-  "version": "0.0.4",
-  "private": true,
+  "name": "@function/sync-restaurants",
+  "version": "2.0.0",
   "main": "index.js",
   "scripts": {
-    "tsc": "$INIT_CWD/../../node_modules/.bin/tsc -b .",
-    "clean": "$INIT_CWD/../../node_modules/.bin/rimraf ../dist ../src ",
-    "prepublishOnly": "$INIT_CWD/../../node_modules/.bin/rimraf ../src/tsconfig.tsbuildinfo",
+    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b",
+    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../src ",
     "build": "npm run clean && npm run tsc"
-  },
-  "dependencies": {}
+  }
 }

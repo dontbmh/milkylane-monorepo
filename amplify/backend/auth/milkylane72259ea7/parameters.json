@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "milkylane32e6a0a9_identitypool_32e6a0a9",
+    "identityPoolName": "milkylane72259ea7_identitypool_72259ea7",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "milkyl32e6a0a9",
-    "userPoolName": "milkylane32e6a0a9_userpool_32e6a0a9",
+    "resourceNameTruncated": "milkyl72259ea7",
+    "userPoolName": "milkylane72259ea7_userpool_72259ea7",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "milkyl32e6a0a9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "milkyl72259ea7_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "32e6a0a9",
-    "resourceName": "milkylane32e6a0a9",
+    "sharedId": "72259ea7",
+    "resourceName": "milkylane72259ea7",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,16 +50,14 @@
     "usernameAttributes": [
         "email"
     ],
-    "userPoolGroupList": [],
-    "serviceName": "Cognito",
-    "usernameCaseSensitive": false,
-    "dependsOn": [],
-    "hostedUIDomainName": "milkylanee1a33d5b-e1a33d5b",
+    "hostedUIDomainName": "milkylane72259ea7-72259ea7",
     "authProvidersUserPool": [
         "Facebook",
         "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"milkylane://signin-callback/\"],\"LogoutURLs\":[\"milkylane://signout-callback/\"]}",
-    "authProviders": []
+    "userPoolGroupList": [],
+    "serviceName": "Cognito",
+    "dependsOn": []
 }

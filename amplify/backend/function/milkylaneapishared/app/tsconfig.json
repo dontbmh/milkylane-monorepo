@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../lib/nodejs"
+    "outDir": "../lib/nodejs",
+    "baseUrl": ".",
+    "paths": { "@milkylane/graphql": ["../../../../../packages/graphql/src"] }
   },
-  "include": ["**/*", "package.json"]
+  "include": ["**/*.ts", "package.json"],
+  "references": [{ "path": "../../../../../packages/graphql" }]
 }

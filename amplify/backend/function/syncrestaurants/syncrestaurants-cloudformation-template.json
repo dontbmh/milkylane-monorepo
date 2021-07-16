@@ -103,7 +103,7 @@
                     "Fn::Sub": [
                       "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
                       {
-                        "appId": "d1dvrm10p3hotb",
+                        "appId": "d3ngo5i41qfjdi",
                         "env": {
                           "Ref": "env"
                         },
@@ -123,7 +123,7 @@
                     "Fn::Sub": [
                       "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
                       {
-                        "appId": "d1dvrm10p3hotb",
+                        "appId": "d3ngo5i41qfjdi",
                         "env": {
                           "Ref": "env"
                         },
@@ -158,12 +158,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "milkylaneLambdaRole3533572f",
+            "milkylaneLambdaRole3799d9a0",
             {
               "Fn::Join": [
                 "",
                 [
-                  "milkylaneLambdaRole3533572f",
+                  "milkylaneLambdaRole3799d9a0",
                   "-",
                   {
                     "Ref": "env"
@@ -252,7 +252,13 @@
             {
               "Effect": "Allow",
               "Action": [
-                "appsync:GraphQL"
+                "appsync:Create*",
+                "appsync:StartSchemaCreation",
+                "appsync:GraphQL",
+                "appsync:Get*",
+                "appsync:List*",
+                "appsync:Update*",
+                "appsync:Delete*"
               ],
               "Resource": [
                 {
@@ -271,7 +277,7 @@
                       {
                         "Ref": "apimilkylaneGraphQLAPIIdOutput"
                       },
-                      "/types/Query/*"
+                      "/*"
                     ]
                   ]
                 },
@@ -290,28 +296,7 @@
                       ":apis/",
                       {
                         "Ref": "apimilkylaneGraphQLAPIIdOutput"
-                      },
-                      "/types/Mutation/*"
-                    ]
-                  ]
-                },
-                {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:appsync:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":apis/",
-                      {
-                        "Ref": "apimilkylaneGraphQLAPIIdOutput"
-                      },
-                      "/types/Subscription/*"
+                      }
                     ]
                   ]
                 }
@@ -395,7 +380,7 @@
                       "Fn::Sub": [
                         "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
                         {
-                          "appId": "d1dvrm10p3hotb",
+                          "appId": "d3ngo5i41qfjdi",
                           "env": {
                             "Ref": "env"
                           },

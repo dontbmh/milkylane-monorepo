@@ -1,6 +1,6 @@
 {
   "auth": {
-    "milkylane32e6a0a9": {
+    "milkylane72259ea7": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authmilkylane32e6a0a9"
+              "userPoolId": "authmilkylane72259ea7"
             }
           },
           "additionalAuthenticationProviders": [

@@ -2,14 +2,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../src",
-    "baseUrl": "../../",
+    "baseUrl": ".",
     "paths": {
-      "@milkylane/api-shared": ["milkylaneapishared/app"],
-      "@milkylane/graphql": [
-        "milkylaneapishared/app/node_modules/@milkylane/graphql"
-      ]
+      "@milkylane/api-shared": ["../../milkylaneapishared/app"],
+      "@milkylane/graphql": ["../../../../../packages/graphql/src"]
     }
   },
-  "include": ["**/*", "package.json"],
-  "references": [{ "path": "../../milkylaneapishared/app" }]
+  "include": ["**/*.ts", "package.json"],
+  "references": [
+    { "path": "../../milkylaneapishared/app" },
+    { "path": "../../../../../packages/graphql" }
+  ]
 }

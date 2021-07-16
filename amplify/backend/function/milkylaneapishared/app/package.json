@@ -1,11 +1,10 @@
 {
-  "name": "@milkylane/function-api-shared",
-  "version": "0.0.4",
-  "private": true,
+  "name": "@function/api-shared",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tsc": "$INIT_CWD/../../node_modules/.bin/tsc -b .",
-    "clean": "$INIT_CWD/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
+    "tsc": "%INIT_CWD%/../../node_modules/.bin/tsc -b .",
+    "clean": "%INIT_CWD%/../../node_modules/.bin/rimraf ../dist ../lib/nodejs ",
     "build": "npm run clean && npm run tsc"
   },
   "dependencies": {

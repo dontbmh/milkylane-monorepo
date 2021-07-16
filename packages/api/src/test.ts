@@ -6,11 +6,10 @@ import { queries } from '@milkylane/graphql';
 
   try {
     const res = await api.query({
-      query: queries.lsAuth,
+      query: queries.syncRestaurants,
       variables: {
         input: {
-          appId: 'ASDF',
-          secret: 'asdf',
+          filter: 'ASDF',
         },
       },
     });
